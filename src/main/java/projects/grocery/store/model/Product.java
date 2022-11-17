@@ -1,24 +1,18 @@
 package projects.grocery.store.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import projects.grocery.store.enumertaion.Quantity;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-
+import java.io.Serializable;
 import static javax.persistence.GenerationType.AUTO;
 
-
 @Entity
-@Data // for the getters and setters
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = AUTO)
@@ -28,6 +22,21 @@ public class Product {
     @NotEmpty (message = "Please specify the name of the product")
     private String name;
 
+    private Double price;
+
+    @Column(nullable = false)
     private String category;
-    private Quantity quantity;
+
+    private int quantity;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
