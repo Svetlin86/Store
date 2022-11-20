@@ -1,42 +1,36 @@
 package projects.grocery.store.model;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import static javax.persistence.GenerationType.AUTO;
+import java.math.BigDecimal;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
+@Accessors(chain = true)
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@ToString
 public class Product implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = AUTO)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @Column (unique = true) // Prevents items with the same name from being saved in the database
+    @Column (unique = true, name = "name")
     @NotEmpty (message = "Please specify the name of the product")
     private String name;
 
-    private Double price;
+    private BigDecimal price;
 
-    @Column(nullable = false)
-    private String category;
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn (name = "category_id")
+    private Category category;
 
     private int quantity;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", category=" + category +
-                ", quantity=" + quantity +
-                '}';
-    }
 }
