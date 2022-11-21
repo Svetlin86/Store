@@ -29,6 +29,7 @@ public class Product implements Serializable {
 
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn (name = "category_id")
+    @ToString.Exclude
     private Category category;
 
     private int quantity;

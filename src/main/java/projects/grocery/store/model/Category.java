@@ -3,6 +3,7 @@ package projects.grocery.store.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
@@ -10,10 +11,11 @@ import javax.persistence.*;
 import static javax.persistence.GenerationType.*;
 
 @Entity
-@Accessors(chain = true)
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
+@Accessors(chain = true)
 public class Category {
 
     @Id
