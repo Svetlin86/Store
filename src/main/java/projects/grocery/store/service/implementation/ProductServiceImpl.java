@@ -7,15 +7,15 @@ package projects.grocery.store.service.implementation;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
 import projects.grocery.store.model.Product;
 import projects.grocery.store.repo.ProductRepo;
 import projects.grocery.store.service.ProductService;
 
-import javax.transaction.Transactional;
-import javax.validation.constraints.NotEmpty;
+import java.math.BigDecimal;
 import java.util.Collection;
 
 import static java.lang.Boolean.TRUE;

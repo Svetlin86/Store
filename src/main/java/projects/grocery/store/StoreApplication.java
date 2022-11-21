@@ -4,7 +4,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.lang.NonNull;
 import projects.grocery.store.model.Category;
 import projects.grocery.store.model.Product;
 import projects.grocery.store.repo.CategoryRepo;
@@ -25,28 +24,25 @@ public class StoreApplication {
         return args -> {
             categoryRepo.save(
                     new Category()
-                            .setName("FOOD")
-                            .setId(1L));
+                            .setName("FOOD"));
             categoryRepo.save(
                     new Category()
-                            .setName("ALCOHOL")
-                            .setId(2L));
+                            .setName("ALCOHOL"));
             categoryRepo.save(
                     new Category()
-                            .setName("BEVERAGES")
-                            .setId(3L));
+                            .setName("BEVERAGES"));
             categoryRepo.save(
                     new Category()
-                            .setName("CIGARETTES")
-                            .setId(4L));
+                            .setName("CIGARETTES"));
             categoryRepo.save(
                     new Category()
-                            .setName("SWEETS")
-                            .setId(5L));
+                            .setName("SWEETS"));
             categoryRepo.save(
                     new Category()
-                            .setName("DOMESTIC")
-                            .setId(6L));
+                            .setName("DOMESTIC"));
+            categoryRepo.save(
+                    new Category()
+                            .setName("AUTO"));
 
             Category food = categoryRepo
                     .findById(1L)
@@ -66,6 +62,9 @@ public class StoreApplication {
             Category domestic = categoryRepo
                     .findById(6L)
                     .orElseThrow(() -> new IllegalArgumentException("not found"));
+            Category auto = categoryRepo
+                    .findById(7L)
+                    .orElseThrow(() -> new IllegalArgumentException("not found"));
 
             productRepo.save(new Product()
                                 .setName("Pig Meat")
@@ -78,15 +77,15 @@ public class StoreApplication {
                                 .setQuantity(12)
                                 .setCategory(alcohol));
             productRepo.save(new Product()
-                                .setName("Fanta")
+                                .setName("Coca-Cola")
                                 .setPrice(BigDecimal.valueOf(1.99))
-                                .setQuantity(100))
-                                .setCategory(beverages);
+                                .setQuantity(100)
+                                .setCategory(beverages));
             productRepo.save(new Product()
                                 .setName("Marlboro")
                                 .setPrice(BigDecimal.valueOf(5.20))
-                                .setQuantity(50))
-                                .setCategory(cigarettes);
+                                .setQuantity(50)
+                                .setCategory(cigarettes));
             productRepo.save(new Product()
                                 .setName("Cheese")
                                 .setPrice(BigDecimal.valueOf(17.99))
@@ -107,6 +106,11 @@ public class StoreApplication {
                                 .setPrice(BigDecimal.valueOf(0.99))
                                 .setQuantity(300)
                                 .setCategory(domestic));
+            productRepo.save(new Product()
+                                .setName("Motor Oil")
+                                .setPrice(BigDecimal.valueOf(19.99))
+                                .setQuantity(200)
+                                .setCategory(auto));
         };
     }
 }
