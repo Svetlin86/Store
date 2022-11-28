@@ -5,7 +5,6 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -15,7 +14,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @ToString
-public class Product implements Serializable {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -27,7 +26,7 @@ public class Product implements Serializable {
 
     private BigDecimal price;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name = "category_id")
     @ToString.Exclude
     private Category category;

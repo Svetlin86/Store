@@ -8,6 +8,8 @@ package projects.grocery.store.service.implementation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -15,63 +17,50 @@ import projects.grocery.store.model.Product;
 import projects.grocery.store.repo.ProductRepo;
 import projects.grocery.store.service.ProductService;
 
-import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.List;
 
 import static java.lang.Boolean.TRUE;
 
 /* With this Lombok creates a ProductServiceImpl constructor
 and adds private final ProductRepo productRepo field
  */
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 @Slf4j // Log allows something to be printed in the console
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepo productRepo;
 
     @Override
-    public Product create (Product product) {
-        log.info("Saving new product: {}",product.getName()); // Log in the console
-        return productRepo.save (product); // Save the product (save method comes from JPA)
+    public Product getProductById(Long id) {
+        log.info("Fetching products by id: {}", id);
+        return productRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException( // TODO change exception
+                        String.format("Product with id: %d does not exist", id)));
     }
 
     @Override
-    public Product setQuantity (Product product, int quantity) {
-        log.info("Setting product quantity");
-        product.setQuantity (quantity);
-        return productRepo.save (product);
-    }
-
-//    @Override
-//    public Product check (Product product ,int quantity) {
-//        log.info("Checking product quantity"); // Log in the console
-//        return productRepo.findByQuantity (product,quantity);
-//    }
-
-    @Override
-    public Collection<Product> list() {
+    public List<Product> getAllProducts(int limit) {
         log.info("Listing all products"); // Log in the console
-        return productRepo.findAll (PageRequest.ofSize(100)).toList();
+        return productRepo.findAll(PageRequest.of(0, limit)).toList();
     }
 
-//    @Override
-//    public @NotEmpty (message = "Please specify the name of the product") String get(String name) {
-//        log.info("Listing products by name: {}", name); // Log in the console
-//        return productRepo.findByName(name).getName();
-//    }
+    @Override
+    public Product createProduct(Product product) {
+        log.info("Saving new product: {}", product.getName());
+        return productRepo.save(product); // Save the product (save method comes from JPA)
+    }
 
     @Override
-    public Product update (Product product) {
-        log.info("Updating product: {}",product.getName()); // Log in the console
+    public Product updateProduct(Product product) {
+        log.info("Updating product: {}", product.getName());
         return productRepo.save(product); // Save the product
     }
 
     @Override
-    public Boolean delete (Long id) {
-        log.info("Deleting product: {}", id); // Log in the console
+    public void deleteProductById(Long id) { // TODO return true if successful and false if unsuccessful
+        log.info("Deleting product: {}", id);
         productRepo.deleteById(id);
-        return TRUE;
     }
-
 }
