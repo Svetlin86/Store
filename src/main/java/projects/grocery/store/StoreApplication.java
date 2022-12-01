@@ -6,10 +6,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import projects.grocery.store.model.Category;
 import projects.grocery.store.model.Product;
+import projects.grocery.store.model.Role;
+import projects.grocery.store.model.User;
 import projects.grocery.store.repo.CategoryRepo;
 import projects.grocery.store.repo.ProductRepo;
+import projects.grocery.store.service.UserService;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 @SpringBootApplication
 public class StoreApplication {
@@ -20,7 +24,7 @@ public class StoreApplication {
 
 
 //    @Bean
-//    CommandLineRunner run(ProductRepo productRepo, CategoryRepo categoryRepo) {
+//    CommandLineRunner run(ProductRepo productRepo, CategoryRepo categoryRepo, UserService userService) {
 //        return args -> {
 //            categoryRepo.save(
 //                    new Category()
@@ -111,6 +115,18 @@ public class StoreApplication {
 //                                .setPrice(BigDecimal.valueOf(19.99))
 //                                .setQuantity(200)
 //                                .setCategory(auto));
+//
+//            userService.saveRole(new Role(null,"ROLE_USER"));
+//            userService.saveRole(new Role(null,"ROLE_MANAGER"));
+//            userService.saveRole(new Role(null,"ROLE_ADMIN"));
+//
+//            userService.saveUser(new User(null,"John Doe","john","1234",new ArrayList<>()));
+//            userService.saveUser(new User(null,"Jane Doe","jane","4321",new ArrayList<>()));
+//            userService.saveUser(new User(null,"Justin Time","justin","12345",new ArrayList<>()));
+//
+//            userService.addRoleToUser("john","ROLE_USER");
+//            userService.addRoleToUser("jane","ROLE_MANAGER");
+//            userService.addRoleToUser("justin","ROLE_ADMIN");
 //        };
 //    }
 }

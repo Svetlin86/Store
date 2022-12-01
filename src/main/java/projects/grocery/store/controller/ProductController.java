@@ -8,7 +8,7 @@ import projects.grocery.store.service.implementation.ProductServiceImpl;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductServiceImpl productService;

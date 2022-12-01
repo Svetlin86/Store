@@ -9,6 +9,7 @@ import projects.grocery.store.repo.CategoryRepo;
 import projects.grocery.store.service.CategoryService;
 
 import java.util.Collection;
+import java.util.List;
 
 import static java.lang.Boolean.TRUE;
 
@@ -26,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Collection<Category> list(int limit) {
+    public List<Category> list(int limit) {
         log.info("Listing all categories");
         return categoryRepo.findAll(PageRequest.of(0,limit)).toList();
     }
@@ -34,7 +35,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category get(Long id) {
         log.info("Fetching categories by id: {}", id);
-        return categoryRepo.findById(id).get();
+        return categoryRepo.findById(id).orElseThrow(() -> new IllegalArgumentException( // TODO change exception
+                String.format("Category with id: %d does not exist", id)));
     }
 
     @Override
@@ -44,9 +46,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Boolean delete(Long id) {
+    public void delete(Long id) {
         log.info("Deleting category: {}", id);
         categoryRepo.deleteById(id);
-        return TRUE;
     }
 }

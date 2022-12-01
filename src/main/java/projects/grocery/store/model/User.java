@@ -2,28 +2,27 @@ package projects.grocery.store.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import lombok.experimental.Accessors;
-import projects.grocery.store.enumeration.Role;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Accessors(chain = true)
 @Getter
 @Setter
-@ToString
-public class User{
+public class User {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
+
+    private String name;
 
     @Column(unique = true, name = "username")
     private String username;
@@ -31,7 +30,7 @@ public class User{
     @NotEmpty(message = "Please enter your password")
     private String password;
 
-    private Role role;
+    @ManyToMany(fetch = EAGER)
+    private List<Role> roles = new ArrayList<>();
 
-    private boolean isAdmin;
 }
