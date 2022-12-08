@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -23,5 +20,8 @@ public class Category {
 
     @Column(name = "name")
     private String name;
+
+    @Version
+    private Long version;
 
 }

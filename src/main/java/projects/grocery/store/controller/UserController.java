@@ -10,7 +10,7 @@ import projects.grocery.store.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
@@ -26,7 +26,7 @@ public class UserController {
                 .body(userService.saveUser(user));
     }
 
-//    @PostMapping("/role/save")
+//    @PostMapping
 //    public ResponseEntity<Role> saveRole(@RequestBody Role role) {
 //        return ResponseEntity.status(HttpStatus.CREATED)
 //                .body(userService.saveRole(role));

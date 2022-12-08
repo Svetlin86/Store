@@ -17,26 +17,11 @@ import java.util.List;
 @Slf4j
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
-    private final RoleRepo roleRepo;
 
     @Override
     public User saveUser(User user) {
         log.info("Saving new user {} to the database", user.getName());
         return userRepo.save(user);
-    }
-
-    @Override
-    public Role saveRole(Role role) {
-        log.info("Saving new role {} to the the database", role.getName());
-        return roleRepo.save(role);
-    }
-
-    @Override
-    public void addRoleToUser(String username, String roleName) {
-        log.info("Adding role {} to user {}", roleName, username);
-        User user = userRepo.findByUsername(username);
-        Role role = roleRepo.findByName(roleName);
-        user.getRoles().add(role);
     }
 
     @Override

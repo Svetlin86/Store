@@ -5,10 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projects.grocery.store.model.Product;
 import projects.grocery.store.service.implementation.ProductServiceImpl;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/products")
+@RequestMapping("/products")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductServiceImpl productService;
@@ -35,9 +36,8 @@ public class ProductController {
 
     @DeleteMapping
     public void deleteProductById(Long id) {
-           productService.deleteProductById(id);
+        productService.deleteProductById(id);
     }
 
-    // TODO why it is not ok to return data containers
     // TODO Response body and domain objects
 }

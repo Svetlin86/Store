@@ -20,6 +20,9 @@ public class Product {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    @Version
+    private Long version;
+
     @Column(unique = true, name = "name")
     @NotEmpty(message = "Please specify the name of the product")
     private String name;
