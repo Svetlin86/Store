@@ -11,6 +11,4 @@ import projects.grocery.store.model.Product;
 @Repository
 public interface ProductRepo extends JpaRepository<Product, Long> {
 
-//    @Query("")
-//    boolean isDeleted(Long id);
 }
