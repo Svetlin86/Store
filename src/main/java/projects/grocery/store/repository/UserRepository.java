@@ -1,7 +1,7 @@
-package projects.grocery.store.repo;
+package projects.grocery.store.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import projects.grocery.store.model.User;
-public interface UserRepo extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 }

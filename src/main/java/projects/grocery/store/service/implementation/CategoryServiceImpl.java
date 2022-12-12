@@ -5,14 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import projects.grocery.store.model.Category;
-import projects.grocery.store.repo.CategoryRepo;
+import projects.grocery.store.repository.CategoryRepository;
 import projects.grocery.store.service.CategoryService;
 import java.util.List;
 @RequiredArgsConstructor
 @Service
 @Slf4j
 public class CategoryServiceImpl implements CategoryService {
-    private final CategoryRepo categoryRepo;
+    private final CategoryRepository categoryRepo;
     @Override
     public Category create(Category category) {
         log.info("Saving new category: {}",category.getName());

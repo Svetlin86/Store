@@ -5,14 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import projects.grocery.store.model.Product;
-import projects.grocery.store.repo.ProductRepo;
+import projects.grocery.store.repository.ProductRepository;
 import projects.grocery.store.service.ProductService;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class ProductServiceImpl implements ProductService {
-    private final ProductRepo productRepo;
+    private final ProductRepository productRepo;
     @Override
     public Product getProductById(Long id) {
         log.info("Fetching products by id: {}", id);
