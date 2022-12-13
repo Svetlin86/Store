@@ -130,7 +130,6 @@ public class StoreApplication {
 //            userService.addRoleToUser("justin","ROLE_ADMIN");
         };
     }
-
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();

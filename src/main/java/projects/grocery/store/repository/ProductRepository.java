@@ -1,6 +1,3 @@
-
-// This interface is used for data manipulation
-
 package projects.grocery.store.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;

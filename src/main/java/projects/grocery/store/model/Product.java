@@ -1,6 +1,7 @@
 package projects.grocery.store.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Accessors(chain = true)
 @Getter
 @Setter
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -34,4 +36,5 @@ public class Product {
 
     @Column(name = "QUANTITY")
     private int quantity;
+
 }
