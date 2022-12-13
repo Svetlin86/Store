@@ -11,10 +11,12 @@ import projects.grocery.store.service.RoleService;
 @Slf4j
 public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepo;
+
     @Override
     public Role getRole(String role) {
-        return roleRepo.findByName(String.valueOf(role));
+        return null;
     }
+
     @Override
     public Role saveRole(Role role) {
         return roleRepo.save(role);

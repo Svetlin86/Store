@@ -13,15 +13,14 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Accessors(chain = true)
 @Getter
 @Setter
-@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ID")
     private Long id;
 
-    @Version
-    private Long version;
+//    @Version
+//    private Long version;
 
     @Column(unique = true, name = "NAME")
     @NotEmpty(message = "Please specify the name of the product")
